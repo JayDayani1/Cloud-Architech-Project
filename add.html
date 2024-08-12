@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 300px;
+            text-align: center;
+        }
+        .form-container h2 {
+            margin-bottom: 20px;
+        }
+        .form-container input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-container button {
+            background-color: blue;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Add New Book</h2>
+        <input type="text" id="book-title" placeholder="Title">
+        <input type="text" id="book-authors" placeholder="Authors">
+        <input type="text" id="book-publisher" placeholder="Publisher">
+        <input type="text" id="book-year" placeholder="Year">
+        
+        <button id="save-book-btn">Save Book</button>
+        <input type="hidden" id="book-image" value="images/book3.jpg">
+        <button id="save-book-btn" onclick="window.location.href='book.html'">Back</button>
+    </div>
+    
+    <script>
+        document.getElementById('save-book-btn').addEventListener('click', function() {
+            const newBook = {
+                Title: document.getElementById('book-title').value,
+                Authors: document.getElementById('book-authors').value,
+                Publisher: document.getElementById('book-publisher').value,
+                Year: document.getElementById('book-year').value,
+                Image: document.getElementById('book-image').value
+            };
+            let books = JSON.parse(localStorage.getItem('books')) || [];
+            books.push(newBook);
+            localStorage.setItem('books', JSON.stringify(books));
+            window.location.href = 'book.html';
+        });
+    </script>
+</body>
+</html>
